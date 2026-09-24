@@ -38,7 +38,28 @@ Phone layouts follow the Figma frames "03. Quem Somos — Mobile" (390px) and "M
 ## Images
 All images are in the `images/` folder and were exported from Figma. Team photos come in two layers each (`team-NAME-bg.png` inside the orange circle and `team-NAME-head.png` on top).
 
+## Conteúdo pelo Sanity (CMS)
+O conteúdo da página Quem Somos é editado sem mexer no código, pelo painel **https://rpe-quem-somos.sanity.studio** (entre com a conta GitHub). Edite e clique em **Publish**. O site mostra a mudança na próxima vez que a página for carregada.
+
+A primeira coluna do painel ("Content") tem 3 itens:
+- **Diretoria** (collection): um item por diretor (nome, cargo, ordem, 2 fotos). Para adicionar, clique no **+** da coluna do meio. Qualquer página que tiver o slider de diretoria usa essa mesma lista.
+- **Parceiros** (collection): um item por parceiro (nome, ordem, logo). Pode ser reusada em outras páginas (Home, Soluções…).
+- **Página Quem Somos**: os textos da página, separados em abas (Topo, Sobre nós, Diretoria, Onde estamos, Valores, Parceiros). Existe só um documento dessa página: não use o **+** para criar outro, o site não vai ler a cópia.
+
+Regras:
+- **Ordem:** diretores e parceiros aparecem pelo número do campo "Ordem" (1 primeiro). Sem número, vão para o fim, em ordem alfabética.
+- **Negrito:** escreva `**palavra**`. **Quebra de linha:** aperte Enter (nos campos maiores).
+- **Diretores:** os 8 atuais têm o enquadramento da foto ajustado à mão, enquanto usarem os arquivos originais (`team-NOME-bg.png` / `team-NOME-head.png`). Um diretor novo, ou uma foto trocada, usa o enquadramento automático: a foto 1 preenche o círculo laranja e a foto 2 (PNG recortado, sem fundo) fica por cima.
+- **Valores:** até 5 cards. Os ícones ficam fixos na ordem (medalha, pessoas, barras, pessoa, mão).
+- **Parceiros:** a órbita mostra os 12 primeiros (tem 12 lugares). Os atuais mantêm lugar e tamanho enquanto usarem o logo original (`partner-NOME.png`). Um parceiro novo ocupa o lugar de um que foi removido, com o logo ajustado ao círculo.
+- **Rascunho e publicado:** o que você edita fica como rascunho (Draft) até clicar em Publish. O site só mostra o que está publicado.
+- **Se o Sanity estiver fora do ar ou lento** (mais de 2 segundos), a página mostra os textos e fotos que já estão escritos no HTML. Por isso o HTML continua com o conteúdo original.
+- **Arquivos técnicos:** `cms.js` busca o conteúdo e preenche a página; o `script.js` espera isso terminar antes de começar as animações. Projeto Sanity `2b7mccfz`, dataset `production`.
+- **Ao publicar o site num domínio próprio**, esse endereço precisa ser liberado no Sanity (em sanity.io/manage → API → CORS origins). Hoje só o preview local (`localhost`) está liberado.
+
 ## Recent Changes
+- 2026-09-24: Sanity — Diretoria e Parceiros viraram collections próprias (um item por diretor/parceiro, com campo "Ordem"), para poderem ser usadas em outras páginas. A "Página Quem Somos" no painel agora é separada em abas por seção, com textos de ajuda em cada campo. O parceiro 10 ganhou o nome provisório "Parceiro Exemplo".
+- 2026-09-24: Página Quem Somos ligada ao Sanity (CMS). Criado o painel de edição em https://rpe-quem-somos.sanity.studio com todos os textos atuais já cadastrados. As 29 fotos da página (faixa do time, diretores, logos de parceiros e foto dos valores) também foram enviadas e já vêm do Sanity. As cópias na pasta `images/` continuam lá como reserva, caso o Sanity não responda.
 - 2026-09-23: Menu do celular/tablet agora tem animação de abertura: o painel branco aparece em fade e os links sobem um a um (0,04s entre cada), com o botão "Fale Conosco" por último. É o mesmo movimento das outras animações da página (fade + subida, sem desfoque). Ao fechar, o painel some rápido, sem cascata. O ícone ☰ vira X com a mesma curva suave. Quem prefere menos movimento vê só o fade. Também corrigido o "pulo" da página ao abrir o menu: ao travar a rolagem, a barra de rolagem sumia e a página ficava ~15px mais larga. Agora o espaço da barra fica sempre reservado (`scrollbar-gutter` no styles.css) e fica branco enquanto o menu está aberto.
 - 2026-09-23: Rolagem suave (Lenis) em todas as páginas: a rolagem com mouse/trackpad agora desliza de forma suave, com duração de 1s e desaceleração no final. No celular a rolagem continua a nativa do aparelho. O script fica no arquivo `lenis.js` (uma cópia do script da Offbrand, ajustada para funcionar fora do Webflow) e é configurado pelos atributos `data-...` na tag `<script>` no fim de cada página. Quando o menu do celular está aberto, a rolagem suave pausa junto com a página. Extras: um elemento com `data-lenis-prevent` rola normalmente (sem o efeito); botões com `data-scroll="stop"`, `"start"` ou `"toggle"` pausam/retomam a rolagem; um link com `data-scrolllink="#id-da-secao"` desliza suavemente até aquela seção.
 - 2026-09-23: Quem Somos — as linhas decorativas das laterais do topo agora se desenham na tela na abertura da página, como se uma caneta fosse riscando: cada traço (arcos, círculos e retas) aparece um após o outro, em velocidade constante (traços curtos são rápidos, curvas longas levam mais tempo), nos dois lados ao mesmo tempo. Elas não deslizam nem aparecem em fade — só se desenham. Leva cerca de 3,5 segundos e não atrasa o resto da abertura. Para isso o desenho deixou de ser uma imagem e foi colado direto na página (mesmo traço de `images/hero-lines.svg`; no celular é o mesmo desenho em metade do tamanho). Os arquivos `hero-lines.svg` e `m-hero-lines-*.svg` ficam na pasta de imagens só como referência. Quem prefere menos movimento vê só um fade.
@@ -69,10 +90,10 @@ All images are in the `images/` folder and were exported from Figma. Team photos
 ## To Do / Open Items
 - Menu links for Soluções, Contato, Trabalhe Conosco, Trust Center and RCV-RPE point nowhere (`#`) until those pages exist.
 - "Converse com a gente", the footer social links, Privacy and Cookies links also need real destinations.
-- The footer CNPJ is a placeholder (`00000000000000`), and "Parceiro 10" in the partner orbit still needs its brand name confirmed.
+- The footer CNPJ is a placeholder (`00000000000000`). The 10th partner in the orbit is named "Parceiro Exemplo" (placeholder) until the real brand is known. Change it in the Sanity panel.
 
 ## How to Customize
 - Para mudar a velocidade da rolagem suave: altere `data-duration` (em segundos) na tag do `lenis.js` no fim de cada página.
 - **Change colors or sizes:** edit the variables at the top of `styles.css`
-- **Change a director:** edit their card in the "Nossa Diretoria" part of `quem-somos.html`
+- **Change a director, value, partner or page text:** use the Sanity panel (see "Conteúdo pelo Sanity" above)
 - **Add a page:** copy `quem-somos.html`, keep the menu and footer, and replace the middle content
