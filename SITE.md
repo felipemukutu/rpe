@@ -55,9 +55,15 @@ Regras:
 - **Rascunho e publicado:** o que você edita fica como rascunho (Draft) até clicar em Publish. O site só mostra o que está publicado.
 - **Se o Sanity estiver fora do ar ou lento** (mais de 2 segundos), a página mostra os textos e fotos que já estão escritos no HTML. Por isso o HTML continua com o conteúdo original.
 - **Arquivos técnicos:** `cms.js` busca o conteúdo e preenche a página; o `script.js` espera isso terminar antes de começar as animações. Projeto Sanity `2b7mccfz`, dataset `production`.
-- **Ao publicar o site num domínio próprio**, esse endereço precisa ser liberado no Sanity (em sanity.io/manage → API → CORS origins). Hoje só o preview local (`localhost`) está liberado.
+- **Endereços liberados no Sanity** (CORS): o preview local (`localhost`) e o GitHub Pages (`https://felipemukutu.github.io`). Se o site ganhar um domínio próprio, esse endereço também precisa ser liberado (em sanity.io/manage → API → CORS origins).
+
+## Site publicado
+- **Endereço:** https://felipemukutu.github.io/rpe/ (a página Quem Somos fica em https://felipemukutu.github.io/rpe/quem-somos)
+- Publicado pelo GitHub Pages a partir da branch `main` do repositório `felipemukutu/rpe`, que agora é público (necessário para usar o Pages no plano gratuito). Cada envio para a `main` atualiza o site em 1 a 2 minutos.
+- Mudanças feitas no Sanity aparecem no site sem precisar publicar de novo no GitHub.
 
 ## Recent Changes
+- 2026-09-24: Site publicado no GitHub Pages (https://felipemukutu.github.io/rpe/). A branch `sanity-integration` foi juntada à `main`, o repositório passou a ser público e o endereço do Pages foi liberado no Sanity.
 - 2026-09-24: Sanity — Diretoria e Parceiros viraram collections próprias (um item por diretor/parceiro, com campo "Ordem"), para poderem ser usadas em outras páginas. A "Página Quem Somos" no painel agora é separada em abas por seção, com textos de ajuda em cada campo. O parceiro 10 ganhou o nome provisório "Parceiro Exemplo".
 - 2026-09-24: Página Quem Somos ligada ao Sanity (CMS). Criado o painel de edição em https://rpe-quem-somos.sanity.studio com todos os textos atuais já cadastrados. As 29 fotos da página (faixa do time, diretores, logos de parceiros e foto dos valores) também foram enviadas e já vêm do Sanity. As cópias na pasta `images/` continuam lá como reserva, caso o Sanity não responda.
 - 2026-09-23: Menu do celular/tablet agora tem animação de abertura: o painel branco aparece em fade e os links sobem um a um (0,04s entre cada), com o botão "Fale Conosco" por último. É o mesmo movimento das outras animações da página (fade + subida, sem desfoque). Ao fechar, o painel some rápido, sem cascata. O ícone ☰ vira X com a mesma curva suave. Quem prefere menos movimento vê só o fade. Também corrigido o "pulo" da página ao abrir o menu: ao travar a rolagem, a barra de rolagem sumia e a página ficava ~15px mais larga. Agora o espaço da barra fica sempre reservado (`scrollbar-gutter` no styles.css) e fica branco enquanto o menu está aberto.
