@@ -60,7 +60,7 @@ Regras:
 ## Site publicado
 - **Endereço:** https://felipemukutu.github.io/rpe/ (a página Quem Somos fica em https://felipemukutu.github.io/rpe/quem-somos)
 - Publicado pelo GitHub Pages a partir da branch `main` do repositório `felipemukutu/rpe`, que agora é público (necessário para usar o Pages no plano gratuito). Cada envio para a `main` atualiza o site em 1 a 2 minutos.
-- Mudanças feitas no Sanity aparecem no site sem precisar publicar de novo no GitHub.
+- Mudanças feitas no Sanity aparecem no site sem precisar publicar de novo no GitHub. Pode levar até ~1 minuto: o navegador guarda a última resposta do Sanity por esse tempo. Se não aparecer logo, espere um pouco e atualize a página.
 
 ## Recent Changes
 - 2026-09-24: Site publicado no GitHub Pages (https://felipemukutu.github.io/rpe/). A branch `sanity-integration` foi juntada à `main`, o repositório passou a ser público e o endereço do Pages foi liberado no Sanity.
