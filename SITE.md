@@ -44,7 +44,7 @@ O conteúdo da página Quem Somos é editado sem mexer no código, pelo painel *
 A primeira coluna do painel ("Content") tem 3 itens:
 - **Diretoria** (collection): um item por diretor (nome, cargo, ordem, 2 fotos). Para adicionar, clique no **+** da coluna do meio. Qualquer página que tiver o slider de diretoria usa essa mesma lista.
 - **Parceiros** (collection): um item por parceiro (nome, ordem, logo). Pode ser reusada em outras páginas (Home, Soluções…).
-- **Página Quem Somos**: os textos da página, separados em abas (Topo, Sobre nós, Diretoria, Onde estamos, Valores, Parceiros). Existe só um documento dessa página: não use o **+** para criar outro, o site não vai ler a cópia.
+- **Página Quem Somos**: os textos da página, separados em abas (Topo, Sobre nós, Diretoria, Onde estamos, Valores, Parceiros, SEO). Existe só um documento dessa página: não use o **+** para criar outro, o site não vai ler a cópia.
 
 Regras:
 - **Ordem:** diretores e parceiros aparecem pelo número do campo "Ordem" (1 primeiro). Sem número, vão para o fim, em ordem alfabética.
@@ -52,6 +52,8 @@ Regras:
 - **Diretores:** os 8 atuais têm o enquadramento da foto ajustado à mão, enquanto usarem os arquivos originais (`team-NOME-bg.png` / `team-NOME-head.png`). Um diretor novo, ou uma foto trocada, usa o enquadramento automático: a foto 1 preenche o círculo laranja e a foto 2 (PNG recortado, sem fundo) fica por cima.
 - **Valores:** até 5 cards. Os ícones ficam fixos na ordem (medalha, pessoas, barras, pessoa, mão).
 - **Parceiros:** a órbita mostra os 12 primeiros (tem 12 lugares). Os atuais mantêm lugar e tamanho enquanto usarem o logo original (`partner-NOME.png`). Um parceiro novo ocupa o lugar de um que foi removido, com o logo ajustado ao círculo.
+- **SEO (aba "SEO"):** título da página (aba do navegador e título no Google, ideal até 60 caracteres), descrição (resumo no Google e ao compartilhar, ideal 120–160 caracteres), imagem de compartilhamento (1200 × 630 px) e a opção "Esconder dos buscadores". Campo vazio = o site usa o valor padrão escrito no HTML. O bloco de SEO é reutilizável: páginas novas no painel podem ganhar a mesma aba.
+- **Atenção sobre compartilhamento:** o Google lê o SEO vindo do Sanity, mas o WhatsApp, LinkedIn e Facebook leem só o que está escrito no HTML. Se mudar o título, a descrição ou a imagem de compartilhamento no Sanity, peça para atualizar também as tags no topo do `quem-somos.html`, para a prévia do link ficar igual.
 - **Rascunho e publicado:** o que você edita fica como rascunho (Draft) até clicar em Publish. O site só mostra o que está publicado.
 - **Se o Sanity estiver fora do ar ou lento** (mais de 2 segundos), a página mostra os textos e fotos que já estão escritos no HTML. Por isso o HTML continua com o conteúdo original.
 - **Arquivos técnicos:** `cms.js` busca o conteúdo e preenche a página; o `script.js` espera isso terminar antes de começar as animações. Projeto Sanity `2b7mccfz`, dataset `production`.
@@ -63,6 +65,7 @@ Regras:
 - Mudanças feitas no Sanity aparecem no site sem precisar publicar de novo no GitHub. Pode levar até ~1 minuto: o navegador guarda a última resposta do Sanity por esse tempo. Se não aparecer logo, espere um pouco e atualize a página.
 
 ## Recent Changes
+- 2026-09-24: Sanity — nova aba **SEO** na Página Quem Somos (título, descrição, imagem de compartilhamento e "Esconder dos buscadores"), já preenchida com o título e a descrição atuais. A página agora também tem as tags de prévia de link (Open Graph) com a foto do time como imagem padrão.
 - 2026-09-24: Site publicado no GitHub Pages (https://felipemukutu.github.io/rpe/). A branch `sanity-integration` foi juntada à `main`, o repositório passou a ser público e o endereço do Pages foi liberado no Sanity.
 - 2026-09-24: Sanity — Diretoria e Parceiros viraram collections próprias (um item por diretor/parceiro, com campo "Ordem"), para poderem ser usadas em outras páginas. A "Página Quem Somos" no painel agora é separada em abas por seção, com textos de ajuda em cada campo. O parceiro 10 ganhou o nome provisório "Parceiro Exemplo".
 - 2026-09-24: Página Quem Somos ligada ao Sanity (CMS). Criado o painel de edição em https://rpe-quem-somos.sanity.studio com todos os textos atuais já cadastrados. As 29 fotos da página (faixa do time, diretores, logos de parceiros e foto dos valores) também foram enviadas e já vêm do Sanity. As cópias na pasta `images/` continuam lá como reserva, caso o Sanity não responda.

@@ -11,7 +11,8 @@ window.cmsReady = (() => {
     "page": *[_id == "quemSomosPage"][0]{
       ...,
       "teamBandImage": teamBandImage.asset->url,
-      "valuesPhoto": valuesPhoto.asset->url
+      "valuesPhoto": valuesPhoto.asset->url,
+      "seo": seo{ title, description, noIndex, "image": image.asset->url }
     },
     "directors": *[_type == "director"] | order(coalesce(order, 999) asc, name asc){
       name, role,
@@ -40,7 +41,20 @@ window.cmsReady = (() => {
     if (partners?.length) fillPartners(partners);
   };
 
+  // SEO tab: browser tab title, Google snippet and link-sharing preview
+  const setMeta = (selector, value) => { const el = $(selector); if (el && value) el.content = value; };
+  const fillSeo = (seo) => {
+    const { title, description, image, noIndex } = seo || {};
+    if (title) document.title = title;
+    setMeta('meta[property="og:title"]', title);
+    setMeta('meta[name="description"]', description);
+    setMeta('meta[property="og:description"]', description);
+    if (image) setMeta('meta[property="og:image"]', `${image}?w=1200&h=630&fit=crop&auto=format`);
+    setMeta('meta[name="robots"]', noIndex ? 'noindex, nofollow' : null);
+  };
+
   const fillPage = (d) => {
+    fillSeo(d.seo);
     setText($('.hero .badge__label'), d.heroBadge);
     setRich($('.hero__title'), d.heroTitle);
     setText($('.hero__content .button'), d.heroButtonLabel);
